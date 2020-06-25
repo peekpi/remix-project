@@ -1,4 +1,6 @@
 import { Plugin } from '@remixproject/engine'
+import { Web3 } from 'web3'
+
 import * as packageJson from '../../../package.json'
 
 export const profile = {
@@ -59,8 +61,12 @@ export class NetworkModule extends Plugin {
   }
 
   /** Add a custom network to the list of available networks */
-  addNetwork (customNetwork) {
-    this.blockchain.addProvider(customNetwork)
+  addNetwork (network) { // { name, url }
+    if (network.url === 'ipc') {
+      this.blockchain.addProvider({ name: network.name, provider: new Web3.providers.IpcProvider() })
+    } else {
+      this.blockchain.addProvider({ name: network.name, provider: new Web3.providers.HttpProvider(network.url) })
+    }
   }
 
   /** Remove a network to the list of availble networks */

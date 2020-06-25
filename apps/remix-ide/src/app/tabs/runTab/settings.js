@@ -174,10 +174,8 @@ class SettingsUI {
         addTooltip(yo`<span><b>${name}</b> provider removed</span>`)
       }
     }
-    this.blockchain.event.register('addProvider', network => addProvider(network))
+    this.blockchain.event.register('addProvider', provider => addProvider(provider))
     this.blockchain.event.register('removeProvider', name => removeProvider(name))
-    this.blockchain.event.register('addWeb3Provider', network => addProvider(network))
-    this.blockchain.event.register('removeWeb3Provider', name => removeProvider(name))
 
     selectExEnv.addEventListener('change', (event) => {
       let context = selectExEnv.options[selectExEnv.selectedIndex].value
