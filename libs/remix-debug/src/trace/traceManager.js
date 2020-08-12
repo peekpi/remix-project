@@ -4,8 +4,9 @@ const TraceRetriever = require('./traceRetriever')
 const TraceCache = require('./traceCache')
 const TraceStepManager = require('./traceStepManager')
 
-const traceHelper = require('../helpers/traceHelper')
-const util = require('../util')
+const traceHelper = require('./traceHelper')
+const remixLib = require('@remix-project/remix-lib')
+const util = remixLib.util
 
 function TraceManager (options) {
   this.web3 = options.web3
@@ -24,29 +25,28 @@ TraceManager.prototype.resolveTrace = function (tx, callback) {
   this.init()
   if (!this.web3) callback('web3 not loaded', false)
   this.isLoading = true
-  var self = this
   this.traceRetriever.getTrace(tx.hash, (error, result) => {
     if (error) {
       console.log(error)
-      self.isLoading = false
+      this.isLoading = false
       callback(error, false)
     } else {
       if (result.structLogs.length > 0) {
-        self.trace = result.structLogs
-        self.traceAnalyser.analyse(result.structLogs, tx, function (error, result) {
+        this.trace = result.structLogs
+        this.traceAnalyser.analyse(result.structLogs, tx, (error, result) => {
           if (error) {
-            self.isLoading = false
+            this.isLoading = false
             console.log(error)
             callback(error, false)
           } else {
-            self.isLoading = false
+            this.isLoading = false
             callback(null, true)
           }
         })
       } else {
         var mes = tx.hash + ' is not a contract invocation or contract creation.'
         console.log(mes)
-        self.isLoading = false
+        this.isLoading = false
         callback(mes, false)
       }
     }
