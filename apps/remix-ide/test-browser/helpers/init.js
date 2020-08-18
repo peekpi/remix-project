@@ -32,6 +32,6 @@ function initModules (browser, callback) {
     .clickLaunchIcon('settings')
     .setValue('[data-id="settingsTabGistAccessToken"]', process.env.gist_token)
     .click('[data-id="settingsTabSaveGistToken"]')
-    .click('[data-id="settingsTabThemeFlatly"]') // e2e tests were initially developed with Flatly. Some tests are failing with the default one (Dark), because the dark theme put uppercase everywhere.
+    .click('[data-id="settingsTabThemeLabelFlatly"]') // e2e tests were initially developed with Flatly. Some tests are failing with the default one (Dark), because the dark theme put uppercase everywhere.
     .perform(() => { callback() })
 }
