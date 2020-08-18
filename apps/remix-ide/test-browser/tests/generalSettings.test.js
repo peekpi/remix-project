@@ -15,19 +15,8 @@ module.exports = {
     .waitForElementContainsText('h6[data-id="sidePanelSwapitTitle"]', 'SETTINGS')
   },
 
-  'Should open gitter channel in a new tab when `Gitter Channel Button` is clicked': function (browser) {
-    const runtimeBrowser = browser.capabilities.browserName
-
-    browser.waitForElementVisible('*[data-id="remixIdeSidePanel"]')
-    .waitForElementVisible('*[data-id="settingsTabGitterChannelButton"]', 5000)
-    .click('*[data-id="settingsTabGitterChannelButton"]')
-    .pause(2000)
-    .perform((done) => { if (runtimeBrowser === 'chrome') { browser.switchBrowserTab(1).assert.urlContains('https://gitter.im/ethereum/remix') } done() })
-  },
-
   'Should activate `generate contract metadata`': function (browser) {
-    browser.switchBrowserTab(0)
-    .waitForElementVisible('*[data-id="remixIdeSidePanel"]', 5000)
+    browser.waitForElementVisible('*[data-id="remixIdeSidePanel"]', 5000)
     .waitForElementVisible('*[data-id="settingsTabGenerateContractMetadata"]', 5000)
     .click('*[data-id="settingsTabGenerateContractMetadata"]')
     .click('*[data-id="verticalIconsFileExplorerIcons"]')
@@ -66,7 +55,7 @@ module.exports = {
 
   'Should load dark theme': function (browser) {
     browser.waitForElementVisible('*[data-id="verticalIconsKindsettings"]', 5000)
-    .click('*[data-id="settingsTabThemeDark"]')
+    .click('*[data-id="settingsTabThemeLabelDark"]')
     .pause(2000)
     .checkElementStyle(':root', '--primary', remixIdeThemes.dark.primary)
     .checkElementStyle(':root', '--secondary', remixIdeThemes.dark.secondary)
@@ -78,7 +67,7 @@ module.exports = {
 
   'Should load light theme': function (browser) {
     browser.waitForElementVisible('*[data-id="verticalIconsKindsettings"]', 5000)
-    .click('*[data-id="settingsTabThemeLight"]')
+    .click('*[data-id="settingsTabThemeLabelLight"]')
     .pause(2000)
     .checkElementStyle(':root', '--primary', remixIdeThemes.light.primary)
     .checkElementStyle(':root', '--secondary', remixIdeThemes.light.secondary)
@@ -90,7 +79,7 @@ module.exports = {
 
   'Should load Cerulean theme': function (browser) {
     browser.waitForElementVisible('*[data-id="verticalIconsKindsettings"]', 5000)
-    .click('*[data-id="settingsTabThemeCerulean"]')
+    .click('*[data-id="settingsTabThemeLabelCerulean"]')
     .pause(5000)
     .checkElementStyle(':root', '--primary', remixIdeThemes.curelean.primary)
     .checkElementStyle(':root', '--secondary', remixIdeThemes.curelean.secondary)
@@ -102,7 +91,7 @@ module.exports = {
 
   'Should load Flatly theme': function (browser) {
     browser.waitForElementVisible('*[data-id="verticalIconsKindsettings"]', 5000)
-    .click('*[data-id="settingsTabThemeFlatly"]')
+    .click('*[data-id="settingsTabThemeLabelFlatly"]')
     .pause(2000)
     .checkElementStyle(':root', '--primary', remixIdeThemes.flatly.primary)
     .checkElementStyle(':root', '--secondary', remixIdeThemes.flatly.secondary)
@@ -114,7 +103,7 @@ module.exports = {
 
   'Should load Lumen theme': function (browser) {
     browser.waitForElementVisible('*[data-id="verticalIconsKindsettings"]', 5000)
-    .click('*[data-id="settingsTabThemeLumen"]')
+    .click('*[data-id="settingsTabThemeLabelLumen"]')
     .pause(2000)
     .checkElementStyle(':root', '--primary', remixIdeThemes.lumen.primary)
     .checkElementStyle(':root', '--secondary', remixIdeThemes.lumen.secondary)
@@ -126,7 +115,7 @@ module.exports = {
 
   'Should load Minty theme': function (browser) {
     browser.waitForElementVisible('*[data-id="verticalIconsKindsettings"]', 5000)
-    .click('*[data-id="settingsTabThemeMinty"]')
+    .click('*[data-id="settingsTabThemeLabelMinty"]')
     .pause(2000)
     .checkElementStyle(':root', '--primary', remixIdeThemes.minty.primary)
     .checkElementStyle(':root', '--secondary', remixIdeThemes.minty.secondary)
@@ -138,7 +127,7 @@ module.exports = {
 
   'Should load Pulse theme': function (browser) {
     browser.waitForElementVisible('*[data-id="verticalIconsKindsettings"]', 5000)
-    .click('*[data-id="settingsTabThemePulse"]')
+    .click('*[data-id="settingsTabThemeLabelPulse"]')
     .pause(2000)
     .checkElementStyle(':root', '--primary', remixIdeThemes.pulse.primary)
     .checkElementStyle(':root', '--secondary', remixIdeThemes.pulse.secondary)
@@ -150,7 +139,7 @@ module.exports = {
 
   'Should load Sandstone theme': function (browser) {
     browser.waitForElementVisible('*[data-id="verticalIconsKindsettings"]', 5000)
-    .click('*[data-id="settingsTabThemeSandstone"]')
+    .click('*[data-id="settingsTabThemeLabelSandstone"]')
     .pause(2000)
     .checkElementStyle(':root', '--primary', remixIdeThemes.sandstone.primary)
     .checkElementStyle(':root', '--secondary', remixIdeThemes.sandstone.secondary)
@@ -162,7 +151,7 @@ module.exports = {
 
   'Should load Spacelab theme': function (browser) {
     browser.waitForElementVisible('*[data-id="verticalIconsKindsettings"]', 5000)
-    .click('*[data-id="settingsTabThemeSpacelab"]')
+    .click('*[data-id="settingsTabThemeLabelSpacelab"]')
     .pause(2000)
     .checkElementStyle(':root', '--primary', remixIdeThemes.spacelab.primary)
     .checkElementStyle(':root', '--secondary', remixIdeThemes.spacelab.secondary)
@@ -174,7 +163,7 @@ module.exports = {
 
   'Should load Yeti theme': function (browser) {
     browser.waitForElementVisible('*[data-id="verticalIconsKindsettings"]', 5000)
-    .click('*[data-id="settingsTabThemeYeti"]')
+    .click('*[data-id="settingsTabThemeLabelYeti"]')
     .pause(2000)
     .checkElementStyle(':root', '--primary', remixIdeThemes.yeti.primary)
     .checkElementStyle(':root', '--secondary', remixIdeThemes.yeti.secondary)
@@ -186,7 +175,7 @@ module.exports = {
 
   'Should load Cyborg theme': function (browser) {
     browser.waitForElementVisible('*[data-id="verticalIconsKindsettings"]', 5000)
-    .click('*[data-id="settingsTabThemeCyborg"]')
+    .click('*[data-id="settingsTabThemeLabelCyborg"]')
     .pause(2000)
     .checkElementStyle(':root', '--primary', remixIdeThemes.cyborg.primary)
     .checkElementStyle(':root', '--secondary', remixIdeThemes.cyborg.secondary)
@@ -198,7 +187,7 @@ module.exports = {
 
   'Should load Darkly theme': function (browser) {
     browser.waitForElementVisible('*[data-id="verticalIconsKindsettings"]', 5000)
-    .click('*[data-id="settingsTabThemeDarkly"]')
+    .click('*[data-id="settingsTabThemeLabelDarkly"]')
     .pause(2000)
     .checkElementStyle(':root', '--primary', remixIdeThemes.darkly.primary)
     .checkElementStyle(':root', '--secondary', remixIdeThemes.darkly.secondary)
@@ -210,7 +199,7 @@ module.exports = {
 
   'Should load Superhero theme': function (browser) {
     browser.waitForElementVisible('*[data-id="verticalIconsKindsettings"]', 5000)
-    .click('*[data-id="settingsTabThemeSuperhero"]')
+    .click('*[data-id="settingsTabThemeLabelSuperhero"]')
     .pause(2000)
     .checkElementStyle(':root', '--primary', remixIdeThemes.superhero.primary)
     .checkElementStyle(':root', '--secondary', remixIdeThemes.superhero.secondary)
